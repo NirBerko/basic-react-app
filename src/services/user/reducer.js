@@ -1,7 +1,30 @@
-import {UReducer} from '../../utils';
+import typeToReducer from 'type-to-reducer';
 
 import {
     GET_USER_DETAILS
 } from './constant'
 
-export default UReducer.reducerHandler(GET_USER_DETAILS)
+const initialState = {
+    data: null,
+    isPending: false,
+    error: false
+};
+
+const reducer = typeToReducer({
+    [ GET_USER_DETAILS ]: {
+        PENDING: () => ({
+            ...initialState,
+            isPending: true
+        }),
+        REJECTED: (state, action) => ({
+            ...initialState,
+            error: action.payload,
+        }),
+        FULFILLED: (state, action) => ({
+            ...initialState,
+            data: action.payload
+        })
+    }
+}, initialState);
+
+export default reducer;

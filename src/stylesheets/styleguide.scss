@@ -1,0 +1,37 @@
+@import "mixins";
+
+@mixin heading($sizeInPx, $mobileSizeInPx: 0) {
+  font-size: calculateRem($sizeInPx);
+  margin: 0;
+}
+
+h1 {
+  @include heading(62, 42);
+}
+
+h2 {
+  @include heading(45, 32);
+}
+
+h3 {
+  @include heading(36);
+}
+
+h4 {
+  @include heading(32);
+}
+
+h5 {
+  @include heading(24);
+}
+
+h6 {
+  @include heading(20,20);
+}
+
+small {
+  font-size: calculateRem(14);
+  @include respond-to('small') {
+    font-size: calculateRem(12);
+  }
+}
